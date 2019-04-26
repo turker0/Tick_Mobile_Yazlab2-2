@@ -1,4 +1,5 @@
 import React from 'react';
+import DeviceInfo from 'react-native-device-info';
 
 import {
   Alert,
@@ -14,6 +15,7 @@ export default class Home extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = { 
+      deviceId: '',
       new: {
         title:"",
         content:"",
@@ -60,7 +62,7 @@ export default class Home extends React.Component {
       },
       body: JSON.stringify({
         /* https://aboutreact.com/react-native-get-unique-id-of-device/ */
-        userid:"mobilkullanici",
+        userid:this.state.deviceId,
         slug:this.state.new.slug,
         diff
       }),
@@ -82,9 +84,9 @@ export default class Home extends React.Component {
 	    });
   }
 
-  //TODO PUSH NOTIFICATION
-
   componentDidMount(){ 
+    var id = DeviceInfo.getUniqueID();
+    this.setState({ deviceId: id, });
     this.props.navigation.addListener('willFocus',(payload) => {
       let { slug } = payload.state.params;
       this.getNew(slug)
