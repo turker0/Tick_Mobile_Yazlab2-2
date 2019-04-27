@@ -1,5 +1,7 @@
 import React from "react";
 import DeviceInfo from "react-native-device-info";
+import Icon from "react-native-vector-icons/Ionicons";
+
 
 import {
   View,
@@ -70,65 +72,110 @@ export default class Home extends React.Component {
 
   static navigationOptions = ({ navigation }) => ({
     title: `${navigation.state.params.title}`,
-    headerTitleStyle: { textAlign: "center", alignSelf: "center" },
+    headerTitleStyle: { textAlign: "center", alignSelf: "center" , fontWeight: '400', },
     headerStyle: {
-      backgroundColor: "white"
+      backgroundColor: "white", height: 50,
     }
   });
 
   render() {
     return (
       <View>
-        <ScrollView>
+        <ScrollView style={styles.scroll}>
           <Image
             resizeMode="cover"
             style={styles.postImage}
             source={{ uri: baseURL + this.state.new.image }}
           />
           <Text style={styles.postTitle}>{this.state.new.content}</Text>
-          <Text style={styles.view}>
-            Görüntülenme: {this.state.new.stats.views}
-          </Text>
-          <View style={styles.buttons}>
-            <Button
-              style={styles.button}
-              title={"Beğen (" + this.state.new.stats.like + ")"}
-              onPress={() => this.vote(1)}
-            />
-            <Text> </Text>
-            <Button
-              style={styles.button}
-              title={"Beğenme (" + this.state.new.stats.dislike + ")"}
-              onPress={() => this.vote(-1)}
-            />
-          </View>
         </ScrollView>
+
+
+        <View style={styles.feedback}> 
+
+          <Text 
+          style={styles.stat}>
+          {"View "}
+          </Text>
+          <Text 
+          style={styles.numbers}>
+          {this.state.new.stats.views}
+          </Text>
+
+       
+          <Text 
+          style={styles.stat}
+          onPress={() => this.vote(+1)}>
+            {"Like "}
+          </Text>
+          <Text  
+          style={styles.numbers}
+          onPress={() => this.vote(+1)}>
+          {this.state.new.stats.like}
+          </Text>
+
+          <Text 
+          style={styles.stat}
+          onPress={() => this.vote(-1)}>
+             {"Dislike "}
+          </Text>
+          <Text
+          style={styles.numbers}
+          onPress={() => this.vote(-1)}>
+          {this.state.new.stats.dislike}
+          </Text>
+  
+        </View>
+        
       </View>
     );
   }
 }
 
+
+
 const styles = StyleSheet.create({
+  scroll:{
+    height: 480,
+  },
+
   postImage: {
     width: "100%",
     height: 200,
-    backgroundColor: "#eff0f1"
+    backgroundColor: "#eff0f1",
+
   },
   postTitle: {
-    padding: 25
+    padding: 20 , color: '#000307',
+    borderTopColor: '#edeef1',
+    borderTopWidth: 2,
+    
   },
-  view: {
-    padding: 25,
-    paddingTop: 0,
-    alignSelf: "flex-start",
-    lineHeight: 20
+
+  feedback:{
+    flexDirection: 'row',
+    borderTopColor: '#edeef1',
+    borderTopWidth: 2,
+    padding:5,
+    
+
   },
-  buttons: {
-    flexDirection: "row",
-    padding: 25,
-    paddingTop: 0
+
+  stat:{
+    fontSize: 15,
+    color:'#999',
+    marginLeft: 20,
+    paddingLeft: 15,
+    paddingRight: 3,
   },
-  button: {
-    alignSelf: "flex-start"
+  
+  numbers:{
+    color:'#555',
+    paddingRight: 15,
   }
+
+
+
+
+
 });
