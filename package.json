@@ -18,7 +18,6 @@
     "react-native-device-info": "^1.5.0",
     "react-native-gesture-handler": "^1.1.0",
     "react-native-onesignal": "^3.2.12",
-    "react-native-vector-icons": "^6.4.2",
     "react-navigation": "^3.9.0"
   },
   "devDependencies": {
