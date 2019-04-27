@@ -182,7 +182,8 @@ const styles = StyleSheet.create({
     borderBottomColor: "#edeef1",
     borderBottomWidth: 1,
     width: "100%",
-    marginBottom: 10
+    marginBottom: 25,
+    backgroundColor: "#f9f9f9"
   },
   boxImage: {
     width: "100%",
@@ -191,29 +192,34 @@ const styles = StyleSheet.create({
   },
   boxTitle: {
     fontFamily: "Nunito-SemiBold",
-    fontSize: 22,
-    padding: 25,
-    color: "#222",
-    paddingBottom: 0
+    fontSize: 20,
+    paddingTop: 10,
+    paddingLeft: 25,
+    paddingRight: 25,
+    color: "#101010",
+    paddingBottom: 0,
+    textTransform: "capitalize",
+    borderTopColor: "#edeef1",
+    borderTopWidth: 1
   },
   boxDownWrapper: {
     justifyContent: "space-between",
     flexDirection: "row",
-    paddingBottom: 30,
+    paddingBottom: 10,
     paddingLeft: 25,
     paddingRight: 25
   },
   boxTags: {
     fontFamily: "Nunito-Regular",
     fontSize: 14,
-    paddingTop: 10,
-    alignSelf: "flex-start"
+    paddingTop: 5,
+    alignSelf: "flex-start",
+    color: "#575757"
   },
   boxTime: {
     fontFamily: "Nunito-Regular",
     fontSize: 14,
-    paddingTop: 10,
-    color: "#aaa",
+    color: "#575757",
     alignSelf: "flex-end"
   },
   mainView: {
@@ -226,7 +232,7 @@ const styles = StyleSheet.create({
   header: {
     justifyContent: "space-around",
     flexDirection: "row",
-    padding: 10,
+    height: 55,
     paddingLeft: 25,
     paddingRight: 25,
     borderBottomColor: "#edeef1",
@@ -237,10 +243,11 @@ const styles = StyleSheet.create({
     width: "50%",
     alignSelf: "flex-start",
     fontFamily: "Nunito-Black",
-    fontSize: 24
+    fontSize: 26,
+    color: "#1e96ff"
   },
   picker: {
-    height: 50,
+    lineHeight: 50,
     width: "50%",
     alignSelf: "flex-end"
   }

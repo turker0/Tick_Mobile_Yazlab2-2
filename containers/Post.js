@@ -3,11 +3,11 @@ import DeviceInfo from "react-native-device-info";
 
 import {
   View,
-  Button,
   Text,
   ScrollView,
   Image,
-  StyleSheet
+  StyleSheet,
+  TouchableNativeFeedback
 } from "react-native";
 
 export default class Home extends React.Component {
@@ -70,65 +70,102 @@ export default class Home extends React.Component {
 
   static navigationOptions = ({ navigation }) => ({
     title: `${navigation.state.params.title}`,
-    headerTitleStyle: { textAlign: "center", alignSelf: "center" },
+    headerTitleStyle: {
+      textAlign: "center",
+      alignSelf: "center",
+      fontWeight: "400"
+    },
     headerStyle: {
-      backgroundColor: "white"
+      backgroundColor: "white",
+      height: 50
     }
   });
 
   render() {
     return (
-      <View>
-        <ScrollView>
+      <View style={styles.mainView}>
+        <ScrollView style={styles.scroll}>
           <Image
             resizeMode="cover"
             style={styles.postImage}
             source={{ uri: baseURL + this.state.new.image }}
           />
           <Text style={styles.postTitle}>{this.state.new.content}</Text>
-          <Text style={styles.view}>
-            Görüntülenme: {this.state.new.stats.views}
-          </Text>
-          <View style={styles.buttons}>
-            <Button
-              style={styles.button}
-              title={"Beğen (" + this.state.new.stats.like + ")"}
-              onPress={() => this.vote(1)}
-            />
-            <Text> </Text>
-            <Button
-              style={styles.button}
-              title={"Beğenme (" + this.state.new.stats.dislike + ")"}
-              onPress={() => this.vote(-1)}
-            />
-          </View>
         </ScrollView>
+        <View style={styles.feedback}>
+          <View style={styles.statWrapper} onPress={() => this.vote(1)}>
+            <Text style={styles.numbers}>{this.state.new.stats.views}</Text>
+            <Text style={styles.stat}>Views</Text>
+          </View>
+          <TouchableNativeFeedback
+            key="like"
+            onPress={() => this.vote(1)}
+            style={styles.padder}
+          >
+            <View style={styles.statWrapper}>
+              <Text style={styles.stat}>Like</Text>
+              <Text style={styles.numbers}>({this.state.new.stats.like})</Text>
+            </View>
+          </TouchableNativeFeedback>
+          <TouchableNativeFeedback
+            key="dislike"
+            onPress={() => this.vote(-1)}
+            style={styles.padder}
+          >
+            <View style={styles.statWrapper}>
+              <Text style={styles.stat}>Dislike</Text>
+              <Text style={styles.numbers}>({this.state.new.stats.dislike})</Text>
+            </View>
+          </TouchableNativeFeedback>
+        </View>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  mainView: {
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    padding: 0,
+    fontFamily: "Nunito-Bold"
+  },
   postImage: {
     width: "100%",
     height: 200,
     backgroundColor: "#eff0f1"
   },
   postTitle: {
-    padding: 25
+    padding: 20,
+    color: "#000307",
+    borderTopColor: "#edeef1",
+    borderTopWidth: 2
   },
-  view: {
-    padding: 25,
-    paddingTop: 0,
-    alignSelf: "flex-start",
-    lineHeight: 20
-  },
-  buttons: {
+  feedback: {
+    height:42,
+    justifyContent: "space-around",
     flexDirection: "row",
-    padding: 25,
-    paddingTop: 0
+    borderTopColor: "#edeef1",
+    borderTopWidth: 2,
+    textAlign: "center"
   },
-  button: {
-    alignSelf: "flex-start"
-  }
+  statWrapper: {
+    fontSize: 15,
+    flexDirection: "row",
+    height:38,
+    paddingLeft:30,
+    paddingRight:30,
+    alignItems: "center"
+  },
+  stat: {
+    color: "#999",
+    paddingRight:2,
+    paddingLeft:2,
+  },
+  numbers: {
+    color: "#555",
+    paddingRight:2,
+    paddingLeft:2,
+  },
 });
