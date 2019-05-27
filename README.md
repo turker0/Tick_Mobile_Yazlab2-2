@@ -1,5 +1,11 @@
 # Tick Mobile (Only Android Version)
 
+## Authors
+
+* [Ata Gulalan](https://github.com/atagulalan)
+* [Oguzhan Turker](https://github.com/oguzturker8)
+
+
 Run emulator:
 ```
 cd %ANDROID_HOME%/emulator && emulator -avd Nexus_5X_API_28 (or on your emulator)
