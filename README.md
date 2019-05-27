@@ -2,7 +2,7 @@
 
 Run emulator:
 ```
-cd %ANDROID_HOME%/emulator && emulator -avd Nexus_5X_API_28
+cd %ANDROID_HOME%/emulator && emulator -avd Nexus_5X_API_28 (or on your emulator)
 ```
 
 Android clean build & run:
